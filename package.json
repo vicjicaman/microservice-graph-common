@@ -1,0 +1,30 @@
+{
+  "name": "@nebulario/microservice-graph-common",
+  "version": "1.70.0-master",
+  "description": "GraphQL api for auth",
+  "main": "dist/index.js",
+  "repository": "github.com:vicjicaman/microservice-graph-common.git",
+  "author": "Victor Jimenez <vic.jicama@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime": "^7.6.0",
+    "@babel/runtime-corejs3": "^7.6.0",
+    "@nebulario/microservice-utils": "1.70.0-master"
+  },
+  "scripts": {
+    "clean": "rm -Rf ./dist*",
+    "build:prod": "yarn clean && webpack --config webpack.config.js --mode=production ",
+    "build:dev": "yarn clean && webpack --config webpack.config.js --mode=development ",
+    "build:watch:dev": "yarn build:dev --watch",
+    "build:watch:prod": "yarn build:prod --watch"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-transform-runtime": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
