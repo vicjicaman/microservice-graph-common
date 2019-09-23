@@ -663,10 +663,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@nebulario/microservice-utils@1.70.0-home-info-prod":
-  version "1.70.0-home-info-prod"
-  resolved "https://registry.yarnpkg.com/@nebulario/microservice-utils/-/microservice-utils-1.70.0-home-info-prod.tgz#daf2b0e4b5d79a78c2b1764e2e5350688730c1b6"
-  integrity sha512-Uag38sBoJVPPzMYOC8MAHZD9qY8yJXXWnG9jdmpptRNddI4kk46Gc+KJWEEyCvAjnPQJ5opVneOm+9sw3spS4g==
+"@nebulario/microservice-utils@1.70.0-master":
+  version "1.70.0-master"
+  resolved "https://registry.yarnpkg.com/@nebulario/microservice-utils/-/microservice-utils-1.70.0-master.tgz#0a477aea686f3779d8fb85deb2cb785520ee966f"
+  integrity sha512-Qm1E2iMtabHiCuEDlbgxpG5s2ujTnUJvvMRu4lf4nH/Ut/JCVwsdMJ1VVz3d/4zgT8QFkDKFnlxkF1h8pFakSA==
   dependencies:
     "@babel/runtime" "^7.6.0"
     "@babel/runtime-corejs3" "^7.6.0"
