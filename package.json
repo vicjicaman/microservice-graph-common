@@ -1,6 +1,6 @@
 {
   "name": "@nebulario/microservice-graph-common",
-  "version": "1.70.1-master",
+  "version": "1.70.0-home-info-prod",
   "description": "GraphQL api for auth",
   "main": "dist/index.js",
   "repository": "github.com:vicjicaman/microservice-graph-common.git",
@@ -9,7 +9,7 @@
   "dependencies": {
     "@babel/runtime": "^7.6.0",
     "@babel/runtime-corejs3": "^7.6.0",
-    "@nebulario/microservice-utils": "link:./../microservice-utils"
+    "@nebulario/microservice-utils": "1.70.0-home-info-prod"
   },
   "scripts": {
     "clean": "rm -Rf ./dist*",
