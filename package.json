@@ -1,6 +1,6 @@
 {
   "name": "@nebulario/microservice-graph-common",
-  "version": "1.70.0-master",
+  "version": "1.70.0-data-reconnect-realm-prod",
   "description": "GraphQL api for auth",
   "main": "dist/index.js",
   "repository": "github.com:vicjicaman/microservice-graph-common.git",
