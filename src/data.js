@@ -7,11 +7,13 @@ export const connect = async ({ mongoose, url }) => {
   while (!connected) {
     try {
       console.log("Connect to data service...");
-      const db = mongoose.connect("mongodb://" + url, {
+      console.log(url);
+      const db = await mongoose.connect("mongodb://" + url, {
         useNewUrlParser: true,
         reconnectTries: 3,
         reconnectInterval: 100
       });
+      console.log("connected!");
 
       mongoose.connection.on("disconnected", () => {
         console.log("-> lost connection");
