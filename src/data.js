@@ -1,18 +1,30 @@
 import * as Utils from "@nebulario/microservice-utils";
 
-export const connect = async ({ mongoose, url }) => {
+export const connect = async ({ mongoose, url, user, password, database }) => {
   let db = null;
   let connected = false;
 
   while (!connected) {
     try {
       console.log("Connect to data service...");
-      console.log(url);
-      const db = await mongoose.connect("mongodb://" + url, {
-        useNewUrlParser: true,
-        reconnectTries: 3,
-        reconnectInterval: 100
-      });
+      console.log(
+        "mongodb://" +
+          user +
+          ":" +
+          password +
+          "@" +
+          url +
+          "/" +
+          database
+      );
+      const db = await mongoose.connect(
+        "mongodb://" + user + ":" + password + "@" + url + "/" + database,
+        {
+          useNewUrlParser: true,
+          reconnectTries: 3,
+          reconnectInterval: 100
+        }
+      );
       console.log("connected!");
 
       mongoose.connection.on("disconnected", () => {
