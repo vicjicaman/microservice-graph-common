@@ -9,7 +9,9 @@
   "dependencies": {
     "@babel/runtime": "^7.6.0",
     "@babel/runtime-corejs3": "^7.6.0",
-    "@nebulario/microservice-utils": "1.70.0-master"
+    "@nebulario/microservice-utils": "1.70.0-master",
+    "amqplib": "^0.5.5",
+    "async-redis": "^1.1.7"
   },
   "scripts": {
     "clean": "rm -Rf ./dist*",
