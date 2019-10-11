@@ -61,11 +61,6 @@ export const operation = async (type, key, op, opts = {}, cxt) => {
   const currKey = "Operations/" + type + "/" + key;
   const arrOpts = ["NX"];
 
-  if (expire) {
-    arrOpts.push("EX");
-    arrOpts.push(expire);
-  }
-
   const info = await cache.set(
     currKey,
     JSON.stringify({ uuid, processing: true, result: null }),
@@ -83,7 +78,8 @@ export const operation = async (type, key, op, opts = {}, cxt) => {
     } finally {
       await cache.set(
         "Operations/" + type + "/" + key,
-        JSON.stringify({ uuid, processing: false, result, error })
+        JSON.stringify({ uuid, processing: false, result, error }),
+        ...(expire ? ["EX", expire] : [])
       );
     }
 
