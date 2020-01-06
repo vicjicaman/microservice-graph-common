@@ -1,24 +1,50 @@
-const redis = require("async-redis");
+const redis = require("redis");
+const asyncRedis = require("async-redis");
+const { promisify } = require("util");
+
 const uuidv4 = require("uuid/v4");
 import * as Utils from "@nebulario/microservice-utils";
 
-export const connect = async ({ host, port, password }) => {
-  const client = redis.createClient({
+export const connect = async ({ host, port, password }, cxt) => {
+  cxt.logger.debug("cache.connect.init", { port, host });
+
+  const clientRaw = redis.createClient({
     port,
     host,
     password
   });
 
-  client.on("connect", function() {
-    console.log(" -> connected");
+  clientRaw.on("connect", function() {
+    cxt.logger.debug("cache.connected");
   });
 
-  client.on("error", function(e) {
-    console.log(" -> error");
-    console.log(e.toString());
+  clientRaw.on("error", function(e) {
+    cxt.logger.error("cache.error", { error: e.toString() });
   });
 
-  return { client };
+  cxt.logger.debug("cache.connect.decorate");
+  const client = asyncRedis.decorate(clientRaw);
+  //const client = clientRaw;
+
+  const res = {
+    client,
+    //clientLockEX: client,
+    clientLock: {
+      setnx: true,
+      set: (lockName, lockTimeoutValue, px, timeout, nx, cb) =>
+        client
+          .set(lockName, lockTimeoutValue, px, timeout, nx)
+          .then(res => cb(null, res))
+          .catch(err => cb(err, null)),
+      del: (lockName, done) => client.del(lockName).then(res => done())
+    },
+    lock: null
+  };
+
+  cxt.logger.debug("cache.lock.init");
+  res.lock = promisify(require("redis-lock")(res.clientLock));
+
+  return res;
 };
 
 export const object = async (
@@ -112,28 +138,6 @@ export const list = async (
   } = cxt;
 
   return await getter(params, cxt);
-  /*
-  const exist = await cache.exists(key);
-
-  if (exist) {
-    const list = await cache.lrange(key, 0, -1);
-    return list.map(serializer.deserialize);
-  } else {
-    const res = await getter(params, cxt);
-    if (res.length === 0) {
-      return res;
-    }
-
-    const mapped = res.map(serializer.serialize);
-    mapped.unshift(key);
-    await cache.rpush(mapped);
-
-    if (expire) {
-      await cache.expire(key, expire);
-    }
-
-    return res;
-  }*/
 };
 
 export const remove = async (key, cxt) => {
