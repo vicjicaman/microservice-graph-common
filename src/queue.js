@@ -1,5 +1,5 @@
 var amqp = require("amqplib");
-import * as Utils from "@nebulario/linker-utils";
+import * as Utils from "@nebulario/microservice-utils";
 
 const initQueue = async (channel, { name }, cxt) => {
   const queue = await channel.assertQueue(name, {

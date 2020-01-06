@@ -1,4 +1,4 @@
-import * as Utils from "@nebulario/linker-utils";
+import * as Utils from "@nebulario/microservice-utils";
 
 export const connect = async (
   { mongoose, url, user, password, database },

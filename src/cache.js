@@ -3,7 +3,7 @@ const asyncRedis = require("async-redis");
 const { promisify } = require("util");
 
 const uuidv4 = require("uuid/v4");
-import * as Utils from "@nebulario/linker-utils";
+import * as Utils from "@nebulario/microservice-utils";
 
 export const connect = async ({ host, port, password }, cxt) => {
   cxt.logger.debug("cache.connect.init", { port, host });
