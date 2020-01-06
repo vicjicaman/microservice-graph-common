@@ -1,6 +1,6 @@
 {
   "name": "@nebulario/microservice-graph-common",
-  "version": "1.70.1-auth-linker-update-prod",
+  "version": "1.70.4-master",
   "description": "GraphQL api for auth",
   "main": "dist/index.js",
   "repository": "github.com:vicjicaman/microservice-graph-common.git",
