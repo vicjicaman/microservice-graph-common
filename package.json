@@ -12,7 +12,7 @@
     "@nebulario/microservice-utils": "1.70.0-master",
     "amqplib": "^0.5.5",
     "async-redis": "^1.1.7",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "uuid": "^3.3.3",
     "redis-lock": "^0.1.4"
   },
